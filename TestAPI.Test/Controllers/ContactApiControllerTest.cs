@@ -33,6 +33,7 @@ namespace TestAPI.Test.Controllers
         }
 
         [TestMethod]
+        [TestCategory("Unit")]
         public async Task GetContactsReturnsValidResponse()
         {
             _mockContactInfo.Setup(x => x.GetContact()).ReturnsAsync(new List<ContactModel> { _contact });
@@ -42,6 +43,7 @@ namespace TestAPI.Test.Controllers
         }
 
         [TestMethod]
+        [TestCategory("Unit")]
         public async Task AddContactReturnsValidResponse()
         {
             _mockContactInfo.Setup(x => x.AddorUpdateContact(It.IsAny<ContactModel>())).ReturnsAsync(_contact);
@@ -51,6 +53,7 @@ namespace TestAPI.Test.Controllers
         }
 
         [TestMethod]
+        [TestCategory("Unit")]
         public async Task UpdateContactReturnsValidResponse()
         {
             _mockContactInfo.Setup(x => x.AddorUpdateContact(It.IsAny<ContactModel>())).ReturnsAsync(_contact);
@@ -60,6 +63,7 @@ namespace TestAPI.Test.Controllers
         }
 
         [TestMethod]
+        [TestCategory("Unit")]
         public async Task DeleteContactReturnsValidResponse()
         {
             _mockContactInfo.Setup(x => x.DeleteContact(It.IsAny<int>())).ReturnsAsync(_contact);

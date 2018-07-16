@@ -84,6 +84,7 @@ namespace testAPI.Repositary
             using (var ctx = new ContactsEntities())
             {
                 var contacts = await ctx.ContactInfoes.ToListAsync();
+                if (!contacts.Any()) throw new ContactException("No Data Found for given id");
                 return contacts.ConvertAll(x => new ContactModel
                 {
                     ContactId = x.ContactId,
