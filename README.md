@@ -16,11 +16,14 @@ Repositary folder contains Interface and class for accessing database.
 Utility Folder contains custom exception class
 TestAPI.Test solution contains unit test cases.
 How to run -
-clone repo 
+clone/download project you can host application on iis or directly run it.
 
-
+Get API
 http://localhost:54318/Api/Contacts/get
+
+Create API
 http://localhost:54318/Api/Contacts/Create
+payload-body
 {
         "FirstName": "chris",
         "LastName": "tens",
@@ -29,6 +32,8 @@ http://localhost:54318/Api/Contacts/Create
         "Status": "Active"
     }
 
+Update API
+payload-body
 http://localhost:54318/Api/Contacts/Update
 {
         "ContactId": 2,
@@ -39,5 +44,6 @@ http://localhost:54318/Api/Contacts/Update
         "Status": "Active"
     }
 
+delete API
 http://localhost:54318/Api/Contacts/delete/?id=1
 
