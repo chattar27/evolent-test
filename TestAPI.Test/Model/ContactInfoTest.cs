@@ -19,12 +19,12 @@ namespace TestAPI.Test.Model
     {
         private ContactModel _contact;
         private ContactApiController _apiController;
-        private Mock<IContactInfo> _mockContactInfo;
+        private Mock<IContactRepo> _mockContactInfo;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            _mockContactInfo = new Mock<IContactInfo>();
+            _mockContactInfo = new Mock<IContactRepo>();
             _apiController = new ContactApiController(_mockContactInfo.Object)
             {
                 Request = new HttpRequestMessage()

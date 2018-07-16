@@ -8,9 +8,9 @@ namespace testAPI.Controllers
     [RoutePrefix("Api/Contacts")]
     public class ContactApiController : ApiController
     {
-        private readonly IContactInfo _contactInfo;
+        private readonly IContactRepo _contactInfo;
 
-        public ContactApiController(IContactInfo contactInfo)
+        public ContactApiController(IContactRepo contactInfo)
         {
             _contactInfo = contactInfo;
         }

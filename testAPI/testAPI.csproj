@@ -157,8 +157,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataAccess.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Repositary\ContactInfo.cs" />
-    <Compile Include="Repositary\IContactInfo.cs" />
+    <Compile Include="Repositary\ContactRepo.cs" />
+    <Compile Include="Repositary\IContactRepo.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

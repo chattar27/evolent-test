@@ -15,7 +15,7 @@ namespace testAPI
             // it is NOT necessary to register your controllers
 
             // e.g. container.RegisterType<ITestService, TestService>();
-            container.RegisterType<IContactInfo, ContactInfo>();
+            container.RegisterType<IContactRepo, ContactRepo>();
 
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }

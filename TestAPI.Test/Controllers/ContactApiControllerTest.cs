@@ -13,7 +13,7 @@ namespace TestAPI.Test.Controllers
     public class ContactApiControllerTest
     {
         private ContactApiController _apiController;
-        private Mock<IContactInfo> _mockContactInfo;
+        private Mock<IContactRepo> _mockContactInfo;
         private ContactModel _contact;
 
         [TestInitialize]
@@ -28,7 +28,7 @@ namespace TestAPI.Test.Controllers
                 Phone = "1231231234",
                 Status = "Active"
             };
-            _mockContactInfo = new Mock<IContactInfo>();
+            _mockContactInfo = new Mock<IContactRepo>();
             _apiController = new ContactApiController(_mockContactInfo.Object);
         }
 

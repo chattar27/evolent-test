@@ -4,7 +4,7 @@ using testAPI.Models;
 
 namespace testAPI.Repositary
 {
-    public interface IContactInfo
+    public interface IContactRepo
     {
         Task<List<ContactModel>> GetContact();
 
