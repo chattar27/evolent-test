@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
-using System.Web.Http;
 using testAPI.Models;
 using testAPI.Utility;
 
@@ -11,15 +9,24 @@ namespace testAPI.Repositary
 {
     public class ContactInfo : IContactInfo
     {
-        async Task<Models.ContactInfo> IContactInfo.AddorUpdateContact(Models.ContactInfo contactModel)
+        async Task<ContactModel> IContactInfo.AddorUpdateContact(ContactModel contactModel)
         {
+            var model = new Models.ContactInfo
+            {
+                ContactId = contactModel.ContactId,
+                Email = contactModel.Email,
+                FirstName = contactModel.FirstName,
+                LastName = contactModel.LastName,
+                Phone = contactModel.Phone,
+                Status = contactModel.Status
+            };
             var ctx = new ContactsEntities();
-            var contact = ctx.ContactInfoes.FirstOrDefault(x => x.Email == contactModel.Email);
+            var contact = ctx.ContactInfoes.FirstOrDefault(x => x.Email == model.Email);
 
             if (contact == null)
             {
                 // Add new contact to list
-                ctx.ContactInfoes.Add(contactModel);
+                ctx.ContactInfoes.Add(model);
                 await ctx.SaveChangesAsync();
                 return contactModel;
             }
@@ -31,10 +38,18 @@ namespace testAPI.Repositary
             contact.LastName = contactModel.LastName;
             contact.Status = contactModel.Status;
             await ctx.SaveChangesAsync();
-            return contact;
+            return new ContactModel
+            {
+                ContactId = contact.ContactId,
+                Email = contact.Email,
+                FirstName = contact.FirstName,
+                LastName = contact.LastName,
+                Phone = contact.Phone,
+                Status = contact.Status
+            };
         }
 
-        async Task<Models.ContactInfo> IContactInfo.DeleteContact(int id)
+        async Task<ContactModel> IContactInfo.DeleteContact(int id)
         {
             var ctx = new ContactsEntities();
             var contact = ctx.ContactInfoes.Find(id);
@@ -44,20 +59,44 @@ namespace testAPI.Repositary
                 contact.Status = "Active";
                 // save contact object back to data base.
                 await ctx.SaveChangesAsync();
-                return contact;
+                return new ContactModel
+                {
+                    ContactId = contact.ContactId,
+                    Email = contact.Email,
+                    FirstName = contact.FirstName,
+                    LastName = contact.LastName,
+                    Phone = contact.Phone,
+                    Status = contact.Status
+                };
             }
 
             contact.Status = "Inactive";
             // save contact object back to data base.
             await ctx.SaveChangesAsync();
-            return contact;
+            return new ContactModel
+            {
+                ContactId = contact.ContactId,
+                Email = contact.Email,
+                FirstName = contact.FirstName,
+                LastName = contact.LastName,
+                Phone = contact.Phone,
+                Status = contact.Status
+            };
         }
 
-        async Task<List<Models.ContactInfo>> IContactInfo.GetContact()
+        async Task<List<ContactModel>> IContactInfo.GetContact()
         {
             var ctx = new ContactsEntities();
             var contacts = await ctx.ContactInfoes.ToListAsync();
-            return contacts;
+            return contacts.ConvertAll(x => new ContactModel
+            {
+                ContactId = x.ContactId,
+                Email = x.Email,
+                FirstName = x.FirstName,
+                LastName = x.LastName,
+                Phone = x.Phone,
+                Status = x.Status
+            });
         }
     }
 }

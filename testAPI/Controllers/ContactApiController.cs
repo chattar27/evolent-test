@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using System.Web.Http;
+using testAPI.Models;
 using testAPI.Repositary;
 
 namespace testAPI.Controllers
@@ -17,17 +18,13 @@ namespace testAPI.Controllers
         [HttpGet, Route("Get")]
         public async Task<IHttpActionResult> GetContacts()
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
             var contacts = await _contactInfo.GetContact();
 
             return Ok(contacts);
         }
 
         [HttpPost, Route("Create")]
-        public async Task<IHttpActionResult> AddContacts([FromBody] Models.ContactInfo contactModel)
+        public async Task<IHttpActionResult> AddContacts([FromBody] ContactModel contactModel)
         {
             if (!ModelState.IsValid)
             {
@@ -39,7 +36,7 @@ namespace testAPI.Controllers
         }
 
         [HttpPut, Route("Update")]
-        public async Task<IHttpActionResult> EditContact([FromBody] Models.ContactInfo contactModel)
+        public async Task<IHttpActionResult> EditContact([FromBody] ContactModel contactModel)
         {
             if (!ModelState.IsValid)
             {

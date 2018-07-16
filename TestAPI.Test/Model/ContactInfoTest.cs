@@ -8,6 +8,7 @@ using System.Web.Http.Results;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using testAPI.Controllers;
+using testAPI.Models;
 using testAPI.Repositary;
 using ContactInfo = testAPI.Models.ContactInfo;
 
@@ -16,7 +17,7 @@ namespace TestAPI.Test.Model
     [TestClass]
     public class ContactInfoTest
     {
-        private ContactInfo _contactInfo;
+        private ContactModel _contact;
         private ContactApiController _apiController;
         private Mock<IContactInfo> _mockContactInfo;
 
@@ -36,7 +37,7 @@ namespace TestAPI.Test.Model
         [TestMethod]
         public async Task ValidContactInfoModel()
         {
-            _contactInfo = new ContactInfo
+            _contact = new ContactModel
             {
                 Email = "as.ad@test.com",
                 FirstName = "asd",
@@ -44,8 +45,8 @@ namespace TestAPI.Test.Model
                 Phone = "1231231234",
                 Status = "Active"
             };
-            _apiController.Validate(_contactInfo);
-            var result = await _apiController.AddContacts(_contactInfo);
+            _apiController.Validate(_contact);
+            var result = await _apiController.AddContacts(_contact);
         }
     }
 }
